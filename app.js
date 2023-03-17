@@ -3,7 +3,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 // const contactsRouter = require("./routes/api/contacts");
-const newsRouter = require("./routes/users");
+const newsRouter = require("./routes/api/news");
 
 const { errorHandler } = require("./helpers/apiHelpers");
 
