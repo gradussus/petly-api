@@ -1,7 +1,7 @@
 const { newsService } = require("../services/newsService");
 
 const getNews = async (_, res) => {
-  const news = await getNewsService();
+  const news = await newsService();
   res.json(news);
 };
 

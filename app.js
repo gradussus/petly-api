@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/news", newsRouter);
-app.use("/petly/friends", friendsRouter);
+app.use("/friends", friendsRouter);
 
 // app.use("/api/contacts", contactsRouter);
 

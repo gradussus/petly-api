@@ -2,8 +2,8 @@ const express = require("express");
 const router = express.Router();
 
 const { getNews } = require("../../models/news");
-const { asyncWrapper } = require("../../helpers/apiHelpers");
+const { controllerWrapper } = require("../../helpers/apiHelpers");
 
-router.get("/news", asyncWrapper(getNews));
+router.get("/", controllerWrapper(getNews));
 
 module.exports = router;
