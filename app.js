@@ -4,6 +4,7 @@ const cors = require("cors");
 
 // const contactsRouter = require("./routes/api/contacts");
 const newsRouter = require("./routes/api/news");
+const friendsRouter = require("./routes/api/friends");
 
 const { errorHandler } = require("./helpers/apiHelpers");
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/news", newsRouter);
+app.use("/petly/friends", friendsRouter);
 
 // app.use("/api/contacts", contactsRouter);
 

@@ -12,6 +12,17 @@ const asyncWrapper = (controller) => {
   };
 };
 
+const controllerWrapper = (controller) => {
+  const func = async (res, req, next) => {
+    try {
+      await controller(res, req, next);
+    } catch (error) {
+      next(error);
+    }
+  };
+  return func;
+};
+
 const errorHandler = (error, req, res, next) => {
   // if (
   //   error instanceof ConflictError ||
@@ -33,4 +44,9 @@ const handleMongooseError = (error, data, next) => {
   next();
 };
 
-module.exports = { asyncWrapper, errorHandler, handleMongooseError };
+module.exports = {
+  controllerWrapper,
+  asyncWrapper,
+  errorHandler,
+  handleMongooseError,
+};
