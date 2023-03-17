@@ -17,7 +17,7 @@ const noticeSchema = new mongoose.Schema();
 //   },
 //   { versionKey: false }
 
-const Notice = mongoose.model("notice", noticeSchema);
+const Notice = mongoose.model("notices", noticeSchema);
 
 module.exports = {
   Notice,
