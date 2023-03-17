@@ -26,4 +26,11 @@ const errorHandler = (error, req, res, next) => {
   res.status(500).json({ message: error.message });
 };
 
-module.exports = { asyncWrapper, errorHandler };
+const handleMongooseError = (error, data, next) => {
+  const { name, code } = error;
+  error.status = name === "MongoServerError" && code === 11000 ? 409 : 400;
+
+  next();
+};
+
+module.exports = { asyncWrapper, errorHandler, handleMongooseError };
