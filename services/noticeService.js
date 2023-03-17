@@ -1,6 +1,6 @@
 const { Notice } = require("../schemas/newsModel");
 
-const newsService = async () => {
+const noticeService = async () => {
   const notice = await Notice.find();
   return notice;
 };
