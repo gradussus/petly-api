@@ -1,31 +1,10 @@
-const {
-  listContactsService,
-  getContactByIdService,
-  removeContactService,
-  addContactService,
-  updateContactService,
-  updateStatusContactService,
-} = require("../services/contactsService");
+const { newsService } = require("../services/newsService");
 
-const { NotFoundError } = require("../helpers/errors");
-
-const listContacts = async (req, res) => {};
-
-const getContactById = async (req, res) => {};
-
-const removeContact = async (req, res) => {};
-
-const addContact = async (req, res) => {};
-
-const updateContact = async (req, res) => {};
-
-const updateStatusContact = async (req, res) => {};
+const getNews = async (_, res) => {
+  const news = await getNewsService();
+  res.json(news);
+};
 
 module.exports = {
-  listContacts,
-  getContactById,
-  removeContact,
-  addContact,
-  updateContact,
-  updateStatusContact,
+  getNews,
 };

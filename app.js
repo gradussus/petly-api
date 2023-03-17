@@ -2,8 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
-const contactsRouter = require("./routes/api/contacts");
-const usersRouter = require("./routes/users");
+// const contactsRouter = require("./routes/api/contacts");
+const newsRouter = require("./routes/users");
 
 const { errorHandler } = require("./helpers/apiHelpers");
 
@@ -17,9 +17,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.use("/users", usersRouter);
+app.use("/news", newsRouter);
 
-app.use("/api/contacts", contactsRouter);
+// app.use("/api/contacts", contactsRouter);
 
 app.use(errorHandler);
 
