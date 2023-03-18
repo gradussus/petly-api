@@ -21,7 +21,7 @@ app.use(express.static("public"));
 
 app.use("/news", newsRouter);
 app.use("/friends", friendsRouter);
-app.use("/notice", noticeRouter);
+app.use("/notices", noticeRouter);
 
 // app.use("/api/contacts", contactsRouter);
 
