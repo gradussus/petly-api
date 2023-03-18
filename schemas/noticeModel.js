@@ -1,3 +1,4 @@
+
 const { Schema, model, SchemaTypes } = require("mongoose");
 const { handleMongooseError } = require("../helpers/apiHelpers");
 
@@ -88,3 +89,4 @@ const noticeSchema = new Schema(
 noticeSchema.post("save", handleMongooseError);
 const Notice = model("notice", noticeSchema);
 module.exports = { Notice };
+

@@ -18,4 +18,5 @@ router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 //  controllerWrapper(getNoticesByCategory)
 //);
 
+
 module.exports = router;
