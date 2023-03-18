@@ -34,7 +34,7 @@ const userSchema = Schema(
 
 const joiUserSchema = Joi.object({
   name: Joi.string().required(),
-  password: Joi.string().required(),
+  password: Joi.string().min(7).max(32).required(),
   email: Joi.string().required(),
   city: Joi.string().required(),
   phone: Joi.string().required(),

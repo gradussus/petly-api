@@ -1,5 +1,5 @@
 const { Conflict } = require("http-errors");
-
+const bcrypt = require("bcrypt");
 const { User } = require("../../schemas/userSchema");
 
 const register = async (req, res, next) => {
@@ -8,7 +8,15 @@ const register = async (req, res, next) => {
   if (user) {
     next(new Conflict("Email has already existed"));
   }
-  const result = await User.create({ name, email, password, city, phone });
+
+  const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+  await User.create({
+    name,
+    email,
+    password: hashPassword,
+    city,
+    phone,
+  });
   res.status(201).json({
     status: "success",
     code: 201,
