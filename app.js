@@ -20,8 +20,8 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/news", newsRouter);
-app.use("/petly/friends", friendsRouter);
-app.use("/petly/notice", noticeRouter);
+app.use("/friends", friendsRouter);
+app.use("/notice", noticeRouter);
 
 // app.use("/api/contacts", contactsRouter);
 
