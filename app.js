@@ -5,6 +5,8 @@ const cors = require("cors");
 const authRouter = require("./routes/api/auth");
 // const contactsRouter = require("./routes/api/contacts");
 const newsRouter = require("./routes/api/news");
+const friendsRouter = require("./routes/api/friends");
+const noticeRouter = require("./routes/api/notice");
 
 const { errorHandler } = require("./helpers/apiHelpers");
 
@@ -20,6 +22,8 @@ app.use(express.static("public"));
 
 app.use("/api/auth", authRouter);
 app.use("/news", newsRouter);
+app.use("/friends", friendsRouter);
+app.use("/notice", noticeRouter);
 
 // app.use("/api/contacts", contactsRouter);
 

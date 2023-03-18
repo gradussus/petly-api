@@ -1,9 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const { getNews } = require("../../models/news");
+const { getNotice } = require("../../models/notice");
 const { controllerWrapper } = require("../../helpers/apiHelpers");
 
-router.get("/", controllerWrapper(getNews));
+router.get("/", controllerWrapper(getNotice));
 
 module.exports = router;

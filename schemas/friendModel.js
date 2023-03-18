@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
-// import { handleMongooseError } from "../helpers/apiHelpers";
+
+const { handleMongooseError } = require("../helpers/apiHelpers");
+
 
 const emailRegexp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -38,4 +40,6 @@ const friendSchema = new Schema(
 
 friendSchema.post("save", handleMongooseError);
 
-export const Friend = mongoose.model("friend", friendSchema);
+const Friend = model("friend", friendSchema);
+
+module.exports = { Friend };
