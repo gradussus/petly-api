@@ -13,4 +13,5 @@ router.get("/", controllerWrapper(getAllNotices));
 //  controllerWrapper(getNoticesByCategory)
 //);
 
+
 module.exports = router;
