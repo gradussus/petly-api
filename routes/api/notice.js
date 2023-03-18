@@ -1,9 +1,17 @@
 const express = require("express");
 const router = express.Router();
 
-const { getNotice } = require("../../models/notice");
 const { controllerWrapper } = require("../../helpers/apiHelpers");
+const { addNotice, getAllNotices } = require("../../models/notices");
 
-router.get("/", controllerWrapper(getNotice));
+router.post("/create", controllerWrapper(addNotice));
+router.get("/", controllerWrapper(getAllNotices));
+
+//router.get(
+//  "/category/:category",
+//  isValidCategory,
+//  controllerWrapper(getNoticesByCategory)
+//);
+
 
 module.exports = router;
