@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.post(
   "/register",
-  // validation(joiUserSchema),
+  validation(joiUserSchema),
   asyncWrapper(controller.register)
 );
 module.exports = router;
