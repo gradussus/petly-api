@@ -6,6 +6,7 @@ const {
   addNotice,
   getAllNotices,
   getNoticesByCategory,
+  getNoticesBySearch,
 } = require("../../models/notices");
 
 router.post("/create", controllerWrapper(addNotice));
@@ -18,5 +19,6 @@ router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 //  controllerWrapper(getNoticesByCategory)
 //);
 
+router.get("/:categoryName/:qwery", controllerWrapper(getNoticesBySearch));
 
 module.exports = router;
