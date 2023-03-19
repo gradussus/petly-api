@@ -28,7 +28,13 @@ const userSchema = Schema(
       type: String,
       required: [true, "Set mobile for user"],
     },
-
+    birthDate: {
+      type: String,
+      match: [
+        /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/,
+        "Please enter a date as 20.12.2021",
+      ],
+    },
     token: {
       type: String,
       default: null,
@@ -57,7 +63,7 @@ userSchema.methods.matchPassword = async function (password) {
 };
 const nameRegexp = /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/;
 const emailRegexp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-const passwordRegexp = /^[a-zA-Z0-9а-яА-Я]+$/;
+const passwordRegexp = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)\S{7,32}$/;
 const phoneRegexp = /^\+380\d{9}$/;
 const cityRegexp = /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/;
 
@@ -74,6 +80,14 @@ const joiLoginSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
 });
 
+const joiUpdatedUserSchema = Joi.object({
+  name: Joi.string().pattern(nameRegexp),
+  password: Joi.string().pattern(passwordRegexp).min(7).max(32),
+  email: Joi.string().pattern(emailRegexp),
+  city: Joi.string().pattern(cityRegexp).min(2),
+  phone: Joi.string().pattern(phoneRegexp),
+});
+
 const User = model("user", userSchema);
 
-module.exports = { User, joiUserSchema, joiLoginSchema };
+module.exports = { User, joiUserSchema, joiLoginSchema, joiUpdatedUserSchema };
