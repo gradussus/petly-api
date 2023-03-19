@@ -20,4 +20,10 @@ router.post(
 
 router.post("/logout", authenticate, controllerWrapper(controller.logout));
 
+router.patch(
+  "/updateUser",
+  authenticate,
+  controllerWrapper(controller.updateUser)
+);
+
 module.exports = router;
