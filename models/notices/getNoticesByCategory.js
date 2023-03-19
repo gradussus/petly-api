@@ -26,13 +26,15 @@ const getNoticesByCategory = async (req, res) => {
 
   //const total = await Notice.find({ category }).count();
 
-  res.json({
-    code: 200,
-    status: "success",
-    data: notices,
-    //totalPages: Math.ceil(total / limit),
-    //page: page * 1,
-  });
+  // res.json({
+  //   code: 200,
+  //   status: "success",
+  //   data: notices,
+  //   //totalPages: Math.ceil(total / limit),
+  //   //page: page * 1,
+  // });
+
+  res.status(200).json(notices);
 };
 
 module.exports = getNoticesByCategory;
