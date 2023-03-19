@@ -1,6 +1,7 @@
 const { Conflict } = require("http-errors");
 const bcrypt = require("bcrypt");
 const { User } = require("../../schemas/userModel");
+const gravatar = require("gravatar");
 
 const register = async (req, res, next) => {
   const { name, email, password, city, phone } = req.body;
@@ -15,6 +16,7 @@ const register = async (req, res, next) => {
     name,
     email,
     password: hashPassword,
+    avatarURL: gravatar.url(email),
     city,
     phone,
   });
