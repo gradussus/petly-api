@@ -20,6 +20,10 @@ const userSchema = Schema(
       type: String,
       required: true,
     },
+    avatarURL: {
+      type: String,
+      required: true,
+    },
     phone: {
       type: String,
       required: [true, "Set mobile for user"],
