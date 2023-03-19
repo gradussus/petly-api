@@ -1,10 +1,6 @@
 const { Schema, model } = require("mongoose");
 const Joi = require("joi");
 const bcrypt = require("bcrypt");
-// const emailRegexp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-// const passwordRegexp =
-//   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#?!@$%^&*-_])\S{7,32}$/gm;
-// const phoneRegexp = /^\+?3?8?(0\d{9})$/;
 
 const userSchema = Schema(
   {
@@ -28,17 +24,17 @@ const userSchema = Schema(
       type: String,
       required: [true, "Set mobile for user"],
     },
+    birthData: {
+      type: String,
+      default: "00.00.0000",
+    },
+    token: {
+      type: String,
+      default: null,
+    },
   },
   { versionKey: false, timestamps: true }
 );
-
-userSchema.methods.setPassword = function (password) {
-  this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-};
-
-userSchema.methods.comparePassword = function (password) {
-  return bcrypt.compareSync(password, this.password);
-};
 
 // userSchema.pre("save", async function (next) {
 //   try {
@@ -58,13 +54,19 @@ userSchema.methods.comparePassword = function (password) {
 //     throw new Error(error);
 //   }
 // };
+const nameRegexp = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
+const emailRegexp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+const passwordRegexp =
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[#?!@$%^&*-_])\S{7,32}$/;
+const phoneRegexp = /^\+380\d{9}$/;
+const cityRegexp = /([A-Za-z]+(?: [A-Za-z]+)*),? ([A-Za-z]{2})/;
 
 const joiUserSchema = Joi.object({
-  name: Joi.string().required(),
-  password: Joi.string().min(7).max(32).required(),
-  email: Joi.string().required(),
-  city: Joi.string().required(),
-  phone: Joi.string().required(),
+  name: Joi.string().pattern(nameRegexp).required(),
+  password: Joi.string().pattern(passwordRegexp).min(7).max(32).required(),
+  email: Joi.string().pattern(emailRegexp).required(),
+  city: Joi.string().pattern(cityRegexp).required(),
+  phone: Joi.string().pattern(phoneRegexp).required(),
 });
 
 const joiLoginSchema = Joi.object({
