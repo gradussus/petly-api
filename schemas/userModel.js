@@ -40,24 +40,24 @@ const userSchema = Schema(
   { versionKey: false, timestamps: true }
 );
 
-// userSchema.pre("save", async function (next) {
-//   try {
-//     const user = this;
-//     if (!user.isModified("password")) next();
-//     const hashPassword = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
-//     this.password = hashPassword;
-//     next();
-//   } catch (error) {
-//     return next(error);
-//   }
-// });
-// userSchema.methods.matchPassword = async function (password) {
-//   try {
-//     return await bcrypt.compare(password, this.password);
-//   } catch (error) {
-//     throw new Error(error);
-//   }
-// };
+userSchema.pre("save", async function (next) {
+  try {
+    const user = this;
+    if (!user.isModified("password")) next();
+    const hashPassword = bcrypt.hashSync(this.password, bcrypt.genSaltSync(10));
+    this.password = hashPassword;
+    next();
+  } catch (error) {
+    return next(error);
+  }
+});
+userSchema.methods.matchPassword = async function (password) {
+  try {
+    return await bcrypt.compare(password, this.password);
+  } catch (error) {
+    throw new Error(error);
+  }
+};
 const nameRegexp = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/;
 const emailRegexp = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 const passwordRegexp =

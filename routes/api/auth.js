@@ -18,4 +18,6 @@ router.post(
   controllerWrapper(controller.login)
 );
 
+router.post("/logout", authenticate, controllerWrapper(controller.logout));
+
 module.exports = router;
