@@ -17,11 +17,13 @@ const getNoticesBySearch = async (req, res) => {
     });
   }
 
-  res.json({
-    code: 200,
-    status: "success",
-    data: notices,
-  });
+  // res.json({
+  //   code: 200,
+  //   status: "success",
+  //   data: notices,
+  // });
+
+  res.status(200).json(notices);
 };
 
 module.exports = getNoticesBySearch;
