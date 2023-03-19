@@ -17,7 +17,7 @@ const getNoticesByCategory = async (req, res) => {
     createdAt: -1,
   });
 
-  if (!notices) {
+  if (notices.length === 0) {
     res.json({
       code: 404,
       message: "Not found",
