@@ -18,7 +18,7 @@ const login = async (req, res) => {
     });
   }
   const passwordCompare = bcrypt.compareSync(password, user.password);
-
+  console.log(passwordCompare);
   if (!passwordCompare) {
     return UnauthorizedError.json({
       message: "Incorrect password",
