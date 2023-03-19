@@ -9,6 +9,7 @@ const getNoticeById = async (req, res) => {
       message: "Not found",
     });
   }
-  res.json({ code: 200, data: notice });
+  //res.json({ code: 200, data: notice });
+  res.status(200).json(notice);
 };
 module.exports = getNoticeById;

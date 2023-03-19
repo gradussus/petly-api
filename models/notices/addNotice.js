@@ -19,12 +19,13 @@ const addNotice = async (req, res) => {
 
   //const notice = await newNotice.populate("owner", "email, phone");
 
-  res.status(201).json({
-    code: 201,
-    status: "success",
-    data: newNotice,
-    //data: notice,
-  });
+  // res.status(201).json({
+  //   code: 201,
+  //   status: "success",
+  //   data: newNotice,
+  //   //data: notice,
+  // });
+  res.status(201).json(newNotice);
 };
 
 module.exports = addNotice;
