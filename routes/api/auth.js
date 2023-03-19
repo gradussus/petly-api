@@ -3,7 +3,7 @@ const express = require("express");
 const { controllerWrapper } = require("../../helpers/apiHelpers");
 const { auth: controller } = require("../../controllers");
 const { joiUserSchema, joiLoginSchema } = require("../../schemas/userModel");
-const { validation } = require("../../middlewares");
+const { validation, authenticate } = require("../../middlewares");
 const router = express.Router();
 
 router.post(
