@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { controllerWrapper } = require("../../helpers/apiHelpers");
-const { isValidId } = require("../../middlewares");
+const { isValidId, authenticate } = require("../../middlewares");
 const {
   addNotice,
   getAllNotices,
@@ -11,10 +11,10 @@ const {
   getNoticeById,
 } = require("../../models/notices");
 
-router.post("/create", controllerWrapper(addNotice));
+router.post("/create", authenticate, controllerWrapper(addNotice));
 router.get("/", controllerWrapper(getAllNotices));
 
-router.get("/category/:categoryName", controllerWrapper(getNoticesByCategory));
+router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 
 //router.get(
 //  "/category/:category",
@@ -27,5 +27,9 @@ router.get(
   controllerWrapper(getNoticesBySearch)
 );
 
-router.get("/:id", isValidId("id"), controllerWrapper(getNoticeById));
+router.get(
+  "/find_notice/:id",
+  isValidId("id"),
+  controllerWrapper(getNoticeById)
+);
 module.exports = router;
