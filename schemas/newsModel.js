@@ -2,20 +2,27 @@ const mongoose = require("mongoose");
 
 const newsSchema = new mongoose.Schema(
   {
-    topic: {
+    title: {
       type: String,
       required: true,
     },
-    text: {
+    description: {
       type: String,
       required: true,
     },
-    createdAt: {
+    url: {
+      type: String,
+      required: [true, "URL is required"],
+    },
+    date: {
       type: String,
       required: true,
     },
   },
-  { versionKey: false }
+  {
+    timestamps: true,
+    versionKey: false,
+  }
 );
 
 const News = mongoose.model("news", newsSchema);
