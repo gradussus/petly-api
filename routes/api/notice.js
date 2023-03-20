@@ -9,10 +9,13 @@ const {
   getNoticesByCategory,
   getNoticesBySearch,
   getNoticeById,
+  getPersonalNotices,
+  deletePersonalNotice,
 } = require("../../models/notices");
 
 router.post("/create", authenticate, controllerWrapper(addNotice));
 router.get("/", controllerWrapper(getAllNotices));
+router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
 router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 
@@ -32,4 +35,12 @@ router.get(
   isValidId("id"),
   controllerWrapper(getNoticeById)
 );
+
+router.delete(
+  "/delete/:id",
+  authenticate,
+  isValidId("id"),
+  controllerWrapper(deletePersonalNotice)
+);
+
 module.exports = router;
