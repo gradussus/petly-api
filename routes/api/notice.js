@@ -14,6 +14,7 @@ const {
 
 router.post("/create", authenticate, controllerWrapper(addNotice));
 router.get("/", controllerWrapper(getAllNotices));
+router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
 router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 
@@ -39,5 +40,7 @@ router.get(
   authenticate,
   controllerWrapper(getPersonalNotices)
 );
+
+//router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
 module.exports = router;
