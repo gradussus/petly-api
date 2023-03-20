@@ -10,6 +10,8 @@ const getNoticeById = require("./getNoticeById");
 
 const getPersonalNotices = require("./getPersonalNotices");
 
+const deletePersonalNotice = require("./deletePersonalNotice");
+
 module.exports = {
   addNotice,
   getAllNotices,
@@ -17,4 +19,5 @@ module.exports = {
   getNoticesBySearch,
   getNoticeById,
   getPersonalNotices,
+  deletePersonalNotice,
 };
