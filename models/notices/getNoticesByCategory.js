@@ -34,7 +34,7 @@ const getNoticesByCategory = async (req, res) => {
   //   //page: page * 1,
   // });
 
-  res.status(200).json(notices);
+  res.json(notices);
 };
 
 module.exports = getNoticesByCategory;
