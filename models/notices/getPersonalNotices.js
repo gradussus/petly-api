@@ -1,13 +1,10 @@
 const { Notice } = require("../../schemas/noticeModel");
 
 const getPersonalNotices = async (req, res) => {
-  const { categoryName } = req.params;
   const { _id } = req.user;
-  console.log(_id);
 
   const notices = await Notice.find({
-    category: categoryName,
-    owner: _id,
+    owner: { _id },
   }).sort({
     createdAt: -1,
   });
