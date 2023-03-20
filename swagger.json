@@ -1,0 +1,66 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "0.1",
+    "title": "Petly",
+    "description": "Documentation for API: https://github.com/gradussus/petly-api"
+  },
+  "consumers": ["application.json"],
+  "produces": ["application.json"],
+  "servers": [{ "url": "https://petly-vxdt.onrender.com " }],
+  "tags": [{ "name": "News", "description": "News enpoint" }],
+
+  "paths": {
+    "/news": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news",
+        "requestBody ": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/newsResponce"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "newsResponce": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "new`s title",
+              "example": "Терміново: на Троєщині божевільна бабка спіймала кота із трьома очима, і ось що було далі..."
+            },
+            "url": {
+              "type": "string",
+              "description": "new`s url",
+              "example": "https://ukr.media/animals/446243/"
+            },
+            "description": {
+              "type": "string",
+              "description": "new`s text",
+              "example": "великий текст новини"
+            },
+            "date": {
+              "type": "string",
+              "description": "new`s date",
+              "example": "2022-08-14"
+            }
+          }
+        }
+      }
+    }
+  }
+}
