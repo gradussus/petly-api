@@ -35,7 +35,7 @@ router.get(
 );
 
 router.get(
-  "/my_notices/:categoryName",
+  "/own/:categoryName",
   authenticate,
   controllerWrapper(getPersonalNotices)
 );
