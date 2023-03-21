@@ -6,7 +6,7 @@ const {
   joiUserSchema,
   joiLoginSchema,
   joiUpdatedUserSchema,
-} = require("../../schemas/userModel");
+} = require("../../schemas/validationJoi");
 const { validation, authenticate } = require("../../middlewares");
 const router = express.Router();
 
