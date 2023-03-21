@@ -29,6 +29,25 @@
           }
         }
       }
+    },
+    "/friends": {
+      "get": {
+        "tags": ["Our friends"],
+        "summary": "Get friends",
+        "requestBody ": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/friendsResponce"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -57,6 +76,55 @@
               "type": "string",
               "description": "new`s date",
               "example": "2022-08-14"
+            }
+          }
+        }
+      },
+      "friendsResponce": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string",
+              "description": "friend`s title",
+              "example": "Притулок для бездомних тварин 'Бабатунда'"
+            },
+            "url": {
+              "type": "string",
+              "description": "friend`s url",
+              "example": "https://dogcat.com.ua"
+            },
+            "addressUrl": {
+              "type": "string",
+              "description": "address",
+              "example": "посилання на гугл карти"
+            },
+            "imageUrl": {
+              "type": "string",
+              "description": "logo",
+              "example": "помилання на логотип"
+            },
+            "address": {
+              "type": "string",
+              "description": "адреса організації",
+              "example": "Rostov, Rostovs`ka Oblast, Ukraine, 07372"
+            },
+            "word-days": {
+              "type": "array",
+              "properties": {
+                "isOpen": {
+                  "type": "boolean"
+                },
+                "from": {
+                  "type": "string",
+                  "example": "11:00"
+                },
+                "to": {
+                  "type": "string",
+                  "example": "18:00"
+                }
+              }
             }
           }
         }
