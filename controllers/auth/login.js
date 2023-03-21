@@ -18,7 +18,7 @@ const login = async (req, res) => {
     });
   }
   const passwordCompare = bcrypt.compareSync(password, user.password);
-  console.log(passwordCompare);
+
   if (!passwordCompare) {
     return UnauthorizedError.json({
       message: "Incorrect password",
@@ -30,7 +30,7 @@ const login = async (req, res) => {
     id: user._id,
   };
 
-  const token = jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign(payload, JWT_SECRET);
   await User.findByIdAndUpdate(user._id, { token });
 
   return res.status(200).json({
