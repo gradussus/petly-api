@@ -12,6 +12,12 @@ const getPersonalNotices = require("./getPersonalNotices");
 
 const deletePersonalNotice = require("./deletePersonalNotice");
 
+const addToFavoriteList = require("./addToFavoriteList");
+
+const removeFromFavoriteList = require("./removeFromFavoriteList");
+
+const getFavoriteList = require("./getFavoriteList");
+
 module.exports = {
   addNotice,
   getAllNotices,
@@ -20,4 +26,7 @@ module.exports = {
   getNoticeById,
   getPersonalNotices,
   deletePersonalNotice,
+  addToFavoriteList,
+  removeFromFavoriteList,
+  getFavoriteList,
 };

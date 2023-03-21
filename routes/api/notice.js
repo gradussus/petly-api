@@ -11,11 +11,30 @@ const {
   getNoticeById,
   getPersonalNotices,
   deletePersonalNotice,
+  addToFavoriteList,
+  removeFromFavoriteList,
+  getFavoriteList,
 } = require("../../models/notices");
 
 router.post("/create", authenticate, controllerWrapper(addNotice));
 router.get("/", controllerWrapper(getAllNotices));
 router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
+
+router.post(
+  "/add_favorite/:id",
+  authenticate,
+  isValidId("id"),
+  controllerWrapper(addToFavoriteList)
+);
+
+router.post(
+  "/remove_favorite/:id",
+  authenticate,
+  isValidId("id"),
+  controllerWrapper(removeFromFavoriteList)
+);
+
+router.get("/favorite", authenticate, controllerWrapper(getFavoriteList));
 
 router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 

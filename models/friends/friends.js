@@ -1,4 +1,4 @@
-const { friendsService } = require("../services/friendsService");
+const { friendsService } = require("../../services/friendsService");
 
 const getFriends = async (_, res) => {
   const friends = await friendsService();

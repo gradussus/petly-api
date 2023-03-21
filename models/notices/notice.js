@@ -1,4 +1,4 @@
-const { noticeService } = require("../services/noticeService");
+const { noticeService } = require("../../services/noticeService");
 
 const getNotice = async (_, res) => {
   const notice = await noticeService();
