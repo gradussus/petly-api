@@ -8,13 +8,16 @@
   "consumers": ["application.json"],
   "produces": ["application.json"],
   "servers": [{ "url": "https://petly-vxdt.onrender.com " }],
-  "tags": [{ "name": "News", "description": "News enpoint" }],
+  "tags": [
+    { "name": "News", "description": "News enpoint" },
+    { "name": "Our friends", "description": "Our friends enpoint" }
+  ],
 
   "paths": {
     "/news": {
       "get": {
         "tags": ["News"],
-        "summary": "Get news",
+        "summary": "Get all news",
         "requestBody ": {},
         "responses": {
           "200": {
@@ -22,7 +25,53 @@
             "content": {
               "application.json": {
                 "schema": {
-                  "$ref": "#/components/schemas/newsResponce"
+                  "$ref": "#/components/schemas/findNewsResponce"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/news/search/:qwery": {
+      "get": {
+        "tags": ["News"],
+        "summary": "Get news by word in topic",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "qwery",
+            "required": true,
+            "type": "string",
+            "description": "search word"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/findNewsResponce"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friends": {
+      "get": {
+        "tags": ["Our friends"],
+        "summary": "Get friends",
+        "requestBody ": {},
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/friendsResponce"
                 }
               }
             }
@@ -33,30 +82,93 @@
   },
   "components": {
     "schemas": {
-      "newsResponce": {
+      "oneNewsResponce": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "new`s title",
+            "example": "Терміново: на Троєщині божевільна бабка спіймала кота із трьома очима, і ось що було далі..."
+          },
+          "url": {
+            "type": "string",
+            "description": "new`s url",
+            "example": "https://ukr.media/animals/446243/"
+          },
+          "description": {
+            "type": "string",
+            "description": "new`s text",
+            "example": "великий текст новини"
+          },
+          "date": {
+            "type": "string",
+            "description": "new`s date",
+            "example": "2022-08-14"
+          }
+        }
+      },
+      "findNewsResponce": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/oneNewsResponce"
+        }
+      },
+      "friendsResponce": {
         "type": "array",
         "items": {
           "type": "object",
           "properties": {
             "title": {
               "type": "string",
-              "description": "new`s title",
-              "example": "Терміново: на Троєщині божевільна бабка спіймала кота із трьома очима, і ось що було далі..."
+              "description": "friend`s title",
+              "example": "Притулок для бездомних тварин 'Бабатунда'"
             },
             "url": {
               "type": "string",
-              "description": "new`s url",
-              "example": "https://ukr.media/animals/446243/"
+              "description": "friend`s url",
+              "example": "https://dogcat.com.ua"
             },
-            "description": {
+            "addressUrl": {
               "type": "string",
-              "description": "new`s text",
-              "example": "великий текст новини"
+              "description": "address",
+              "example": "посилання на гугл карти"
             },
-            "date": {
+            "imageUrl": {
               "type": "string",
-              "description": "new`s date",
-              "example": "2022-08-14"
+              "description": "logo",
+              "example": "помилання на логотип"
+            },
+            "address": {
+              "type": "string",
+              "description": "адреса організації",
+              "example": "Rostov, Rostovs`ka Oblast, Ukraine, 07372"
+            },
+            "work-days": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "isOpen": {
+                    "type": "boolean"
+                  },
+                  "from": {
+                    "type": "string",
+                    "example": "11:00"
+                  },
+                  "to": {
+                    "type": "string",
+                    "example": "18:00"
+                  }
+                }
+              }
+            },
+            "phone": {
+              "type": "string",
+              "example": "+380669379992"
+            },
+            "email": {
+              "type": "string",
+              "example": "canieatthatdog@kotopes.ua"
             }
           }
         }
