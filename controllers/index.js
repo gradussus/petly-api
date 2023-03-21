@@ -1,3 +1,3 @@
 const auth = require("./auth");
-
-module.exports = { auth };
+const pets = require("./pets");
+module.exports = { auth, pets };
