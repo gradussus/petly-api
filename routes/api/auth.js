@@ -31,4 +31,10 @@ router.patch(
   controllerWrapper(controller.updateUser)
 );
 
+router.get(
+  "/currentUser",
+  authenticate,
+  controllerWrapper(controller.updateUser)
+);
+
 module.exports = router;
