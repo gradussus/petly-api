@@ -110,21 +110,32 @@
               "description": "адреса організації",
               "example": "Rostov, Rostovs`ka Oblast, Ukraine, 07372"
             },
-            "word-days": {
+            "work-days": {
               "type": "array",
-              "properties": {
-                "isOpen": {
-                  "type": "boolean"
-                },
-                "from": {
-                  "type": "string",
-                  "example": "11:00"
-                },
-                "to": {
-                  "type": "string",
-                  "example": "18:00"
+              "items": {
+                "type": "object",
+                "properties": {
+                  "isOpen": {
+                    "type": "boolean"
+                  },
+                  "from": {
+                    "type": "string",
+                    "example": "11:00"
+                  },
+                  "to": {
+                    "type": "string",
+                    "example": "18:00"
+                  }
                 }
               }
+            },
+            "phone": {
+              "type": "string",
+              "example": "+380669379992"
+            },
+            "email": {
+              "type": "string",
+              "example": "canieatthatdog@kotopes.ua"
             }
           }
         }
