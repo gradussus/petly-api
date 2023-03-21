@@ -1,4 +1,3 @@
-
 const { Schema, model, SchemaTypes } = require("mongoose");
 const { handleMongooseError } = require("../helpers/apiHelpers");
 
@@ -6,9 +5,9 @@ const noticeSchema = new Schema(
   {
     category: {
       type: String,
-      enum: ["sell", "lost-found", "in-good-hands"],
+      enum: ["sell", "lost-found", "for-free"],
       default: "sell",
-      required: [true, "Category is required"],
+      required: [true, "Category may be only sell, lost-found, for-free"],
     },
     title: {
       type: String,
@@ -79,6 +78,8 @@ const noticeSchema = new Schema(
     imageURL: {
       type: String,
       required: [true, "PhotoURL is required"],
+      default:
+        "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg",
     },
   },
   {
@@ -89,4 +90,3 @@ const noticeSchema = new Schema(
 noticeSchema.post("save", handleMongooseError);
 const Notice = model("notice", noticeSchema);
 module.exports = { Notice };
-
