@@ -20,12 +20,10 @@ const register = async (req, res, next) => {
     phone,
   });
   res.status(201).json({
-    data: {
-      name,
-      email,
-      city,
-      phone,
-    },
+    name,
+    email,
+    city,
+    phone,
   });
 };
 

@@ -3,16 +3,14 @@ const currentUser = async (req, res, next) => {
     req.body;
 
   res.status(200).json({
-    data: {
-      user: {
-        name,
-        email,
-        city,
-        avatarURL,
-        phone,
-        birthData,
-        favoriteList,
-      },
+    user: {
+      name,
+      email,
+      city,
+      avatarURL,
+      phone,
+      birthData,
+      favoriteList,
     },
   });
 };
