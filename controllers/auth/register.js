@@ -21,8 +21,6 @@ const register = async (req, res, next) => {
     phone,
   });
   res.status(201).json({
-    status: "success",
-    code: 201,
     data: {
       name,
       email,
