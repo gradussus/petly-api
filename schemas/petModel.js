@@ -17,6 +17,8 @@ const petSchema = Schema(
     imageURL: {
       type: String,
       required: [true, "PhotoURL is required"],
+      default:
+        "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg",
     },
     comments: {
       type: String,
