@@ -6,12 +6,11 @@ const getNoticesByCategory = async (req, res) => {
   //const { page = 1, limit = 12 } = req.query;
   //const skip = (page - 1) * limit;
 
-  //const notices = await Notice.find({ category }, "-createdAt -updatedAt", {
+  //const notices = await Notice.find({ categoryName }, "-createdAt -updatedAt", {
   // skip,
   // limit,
   //})
-  // .sort({ createdAt: -1 })
-  //     .populate("owner", "email phone");
+  // .sort({ createdAt: -1 });
 
   const notices = await Notice.find({ category: categoryName }).sort({
     createdAt: -1,
@@ -19,7 +18,6 @@ const getNoticesByCategory = async (req, res) => {
 
   if (notices.length === 0) {
     res.json({
-      code: 404,
       message: "Not found",
     });
   }
@@ -27,11 +25,9 @@ const getNoticesByCategory = async (req, res) => {
   //const total = await Notice.find({ category }).count();
 
   // res.json({
-  //   code: 200,
-  //   status: "success",
   //   data: notices,
-  //   //totalPages: Math.ceil(total / limit),
-  //   //page: page * 1,
+  //   totalPages: Math.ceil(total / limit),
+  //   page: page * 1,
   // });
 
   res.json(notices);
