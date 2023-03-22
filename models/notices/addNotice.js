@@ -11,12 +11,6 @@ const addNotice = async (req, res) => {
     owner: _id,
   });
 
-  // res.status(201).json({
-  //   code: 201,
-  //   status: "success",
-  //   data: newNotice,
-  //   //data: notice,
-  // });
   res.status(201).json(newNotice);
 };
 
