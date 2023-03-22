@@ -5,11 +5,10 @@ const getNoticeById = async (req, res) => {
 
   if (!notice) {
     res.json({
-      code: 404,
       message: "Not found",
     });
   }
-  //res.json({ code: 200, data: notice });
+
   res.status(200).json(notice);
 };
 module.exports = getNoticeById;
