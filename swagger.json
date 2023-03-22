@@ -160,6 +160,28 @@
           }
         }
       }
+    },
+    "api/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Logout user",
+        "requestBody": {
+          "description": "logout object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/logoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -324,6 +346,16 @@
             "pattern": "^[a-zA-Z0-9а-яА-Я]+$",
             "description": "user`s password",
             "example": "min 7, max 32"
+          }
+        }
+      },
+      "logoutRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "user`s id",
+            "example": "тут буде ID юзера"
           }
         }
       }
