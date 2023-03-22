@@ -10,16 +10,9 @@ const getNewsBySearch = async (req, res) => {
 
   if (data.length === 0) {
     res.json({
-      code: 404,
       message: "Not found",
     });
   }
-
-  // res.json({
-  //   code: 200,
-  //   status: "success",
-  //   data: notices,
-  // });
 
   res.status(200).json(data);
 };
