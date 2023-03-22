@@ -6,12 +6,12 @@ const updateUser = async (req, res, next) => {
   try {
     const { id } = req.user;
 
-    const { name, email, city, avatarURL, phone, birthData, favoriteList } =
+    const { name, email, city, avatarURL, phone, birthDate, favoriteList } =
       req.body;
 
     const user = await User.findByIdAndUpdate(
       id,
-      { name, email, city, avatarURL, phone, birthData, favoriteList },
+      { name, email, city, avatarURL, phone, birthDate, favoriteList },
       { new: true }
     );
     if (!user) {

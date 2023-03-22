@@ -15,6 +15,7 @@ const joiUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   city: Joi.string().pattern(cityRegexp).min(2).required(),
   phone: Joi.string().pattern(phoneRegexp).required(),
+  birthDate: Joi.string(),
 });
 
 const joiLoginSchema = Joi.object({
@@ -28,6 +29,7 @@ const joiUpdatedUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp),
   city: Joi.string().pattern(cityRegexp).min(2),
   phone: Joi.string().pattern(phoneRegexp),
+  birthDate: Joi.string().pattern(dateRegexp),
 });
 
 const joiPetSchema = Joi.object({
