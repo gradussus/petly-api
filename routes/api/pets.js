@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { controllerWrapper } = require("../../helpers/apiHelpers");
-const addPet = require("../../controllers/pets/addPet");
+const { addPet, deletePet } = require("../../controllers/pets");
 const { joiPetSchema } = require("../../schemas/validationJoi");
 const { validation, authenticate } = require("../../middlewares");
 
@@ -12,5 +12,7 @@ router.post(
   validation(joiPetSchema),
   controllerWrapper(addPet)
 );
+
+router.delete("/:id", authenticate, controllerWrapper(deletePet));
 
 module.exports = router;
