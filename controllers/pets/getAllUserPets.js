@@ -6,9 +6,7 @@ const getAllUserPets = async (req, res) => {
   const AllUserPets = await Pet.find({ owner });
 
   if (!AllUserPets) {
-    return res
-      .status(404)
-      .json({ Message: "This user does not have any pet yet" });
+    return res.json({ Message: "This user does not have any pet yet" });
   }
 
   res.status(200).json(AllUserPets);
