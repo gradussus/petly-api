@@ -10,7 +10,8 @@
   "servers": [{ "url": "https://petly-vxdt.onrender.com " }],
   "tags": [
     { "name": "News", "description": "News enpoint" },
-    { "name": "Our friends", "description": "Our friends enpoint" }
+    { "name": "Our friends", "description": "Our friends enpoint" },
+    { "name": "Auth", "description": "Login, registration, logout, etc" }
   ],
 
   "paths": {
@@ -75,6 +76,45 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "api/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Registration new user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Registration`s object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/registrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/registrationResponse"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
           }
         }
       }
@@ -170,6 +210,62 @@
               "type": "string",
               "example": "canieatthatdog@kotopes.ua"
             }
+          }
+        }
+      },
+      "registrationRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user`s name",
+            "example": "Stepan Giga"
+          },
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "password": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9а-яА-Я]+$",
+            "description": "user`s password",
+            "example": "min 7, max 32"
+          },
+          "city": {
+            "type": "string",
+            "description": "users`s city",
+            "example": "Dnipro, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "users`s phone",
+            "example": "+380991234567"
+          }
+        }
+      },
+      "registrationResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user`s name",
+            "example": "Stepan Giga"
+          },
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "city": {
+            "type": "string",
+            "description": "users`s city",
+            "example": "Dnipro, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "users`s phone",
+            "example": "+380991234567"
           }
         }
       }
