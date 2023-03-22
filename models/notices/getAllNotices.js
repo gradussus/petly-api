@@ -5,7 +5,6 @@ const getAllNotices = async (req, res) => {
 
   if (notices.length === 0) {
     res.json({
-      code: 404,
       message: "Not found",
     });
   }

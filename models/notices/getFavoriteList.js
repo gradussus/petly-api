@@ -10,11 +10,6 @@ const getFavoriteList = async (req, res) => {
     _id: -1,
   });
 
-  //   res.json({
-  //     code: 200,
-  //     status: "success",
-  //     data: notices,
-  //   });
   res.status(200).json(notices);
 };
 
