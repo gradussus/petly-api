@@ -279,6 +279,7 @@
       },
       "registrationRequest": {
         "type": "object",
+        "required": ["name", "email", "password", "city", "phone"],
         "properties": {
           "name": {
             "type": "string",
