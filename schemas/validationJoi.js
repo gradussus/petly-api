@@ -5,8 +5,7 @@ const emailRegexp =
 const passwordRegexp = /^[a-zA-Z0-9а-яА-Я]+$/;
 const phoneRegexp = /^\+380\d{9}$/;
 const cityRegexp = /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/;
-const dateRegexp =
-  /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
+const dateRegexp = /^(\d{1,2})-(\d{1,2})-(\d{4})$/;
 const breedRegexp = /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/;
 
 const joiUserSchema = Joi.object({
