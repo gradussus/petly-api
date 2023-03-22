@@ -84,8 +84,6 @@
       "post": {
         "tags": ["Auth"],
         "summary": "Registration new user",
-        "parameters": [],
-        "security": [{ "Bearer": [] }],
         "requestBody": {
           "description": "Registration`s object",
           "required": true,
@@ -115,6 +113,72 @@
           "400": {
             "description": "Bad request (invalid request body)",
             "content": {}
+          }
+        }
+      }
+    },
+    "api/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Login user",
+        "requestBody": {
+          "description": "Login`s object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/loginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string",
+                      "description": "users`s token",
+                      "example": "тут буде токен"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized (wrong email or password)",
+            "content": {}
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          }
+        }
+      }
+    },
+    "api/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "Logout user",
+        "requestBody": {
+          "description": "logout object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/logoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Successful operation"
           }
         }
       }
@@ -266,6 +330,32 @@
             "type": "string",
             "description": "users`s phone",
             "example": "+380991234567"
+          }
+        }
+      },
+      "loginRequest": {
+        "type": "object",
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "password": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9а-яА-Я]+$",
+            "description": "user`s password",
+            "example": "min 7, max 32"
+          }
+        }
+      },
+      "logoutRequest": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "user`s id",
+            "example": "тут буде ID юзера"
           }
         }
       }
