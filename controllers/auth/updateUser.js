@@ -1,5 +1,3 @@
-const { NotFound } = require("http-errors");
-
 const { User } = require("../../schemas/userModel");
 
 const updateUser = async (req, res, next) => {
@@ -15,7 +13,7 @@ const updateUser = async (req, res, next) => {
       { new: true }
     );
     if (!user) {
-      next(new NotFound(`User with id=${id} not found`));
+      return res.status(404).json({ Message: `User with id=${id} not found` });
     }
     res.status(200).json({
       data: {
