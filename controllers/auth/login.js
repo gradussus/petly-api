@@ -1,4 +1,3 @@
-const { UnauthorizedError } = require("../../helpers/errors");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -12,17 +11,15 @@ const login = async (req, res) => {
   const user = await User.findOne({ email });
 
   if (!user) {
-    return UnauthorizedError.json({
+    return res.status(401).json({
       message: "Incorrect email",
-      data: "Bad request",
     });
   }
   const passwordCompare = bcrypt.compareSync(password, user.password);
 
   if (!passwordCompare) {
-    return UnauthorizedError.json({
+    return res.status(401).json({
       message: "Incorrect password",
-      data: "Bad request",
     });
   }
 

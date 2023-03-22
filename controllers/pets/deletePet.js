@@ -1,5 +1,3 @@
-const { NotFound } = require("http-errors");
-
 const { Pet } = require("../../schemas/petModel");
 
 const deletePet = async (req, res, next) => {
@@ -11,7 +9,9 @@ const deletePet = async (req, res, next) => {
     owner: { _id },
   });
   if (!petToDelete) {
-    throw new NotFound(`Contact with id=${id} not found`);
+    return res
+      .status(404)
+      .json({ Message: "There is no such pet in the list" });
   }
   res.status(200).json({
     data: { petToDelete },
