@@ -7,7 +7,7 @@ const deletePersonalNotice = async (req, res) => {
   const result = await Notice.findByIdAndRemove({ _id: id, owner: { _id } });
 
   if (!result) {
-    res.status(404).json({ message: "Not found" });
+    res.json({ message: "Not found" });
     return;
   }
 
