@@ -120,7 +120,7 @@
     "api/auth/login": {
       "post": {
         "tags": ["Auth"],
-        "summary": "Login user user",
+        "summary": "Login user",
         "requestBody": {
           "description": "Login`s object",
           "required": true,
