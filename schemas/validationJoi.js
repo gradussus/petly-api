@@ -7,6 +7,21 @@ const phoneRegexp = /^\+380\d{9}$/;
 const cityRegexp = /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/;
 const dateRegexp = /^(\d{1,2})-(\d{1,2})-(\d{4})$/;
 const breedRegexp = /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/;
+const birthDate =
+  /^\s*(3[01]|[12][0-9]|0?[1-9])\.(1[012]|0?[1-9])\.((?:19|20)\d{2})\s*$/;
+
+const joiNoticeAddSchema = Joi.object({
+  category: Joi.string().valid("sell", "lost-found", "for-free").required(),
+  title: Joi.string().min(2).max(48).required(),
+  name: Joi.string().pattern(nameRegexp).min(2).max(16),
+  birthDate: Joi.string().pattern(birthDate),
+  breed: Joi.string().pattern(breedRegexp).min(2).max(24),
+  sex: Joi.string().valid("male", "female").required(),
+  location: Joi.string().pattern(cityRegexp).required(),
+  comments: Joi.string().min(8).max(120).required(),
+  price: Joi.number().min(0),
+  imageURL: Joi.string(),
+});
 
 const joiUserSchema = Joi.object({
   name: Joi.string().pattern(nameRegexp).required(),
@@ -43,4 +58,5 @@ module.exports = {
   joiLoginSchema,
   joiUpdatedUserSchema,
   joiPetSchema,
+  joiNoticeAddSchema,
 };
