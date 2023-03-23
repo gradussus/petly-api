@@ -34,7 +34,7 @@
         }
       }
     },
-    "/news/search/:qwery": {
+    "/news/search/{qwery}": {
       "get": {
         "tags": ["News"],
         "summary": "Get news by word in topic",
@@ -179,6 +179,57 @@
         "responses": {
           "204": {
             "description": "Successful operation"
+          }
+        }
+      }
+    },
+    "api/auth/currentUser": {
+      "get": {
+        "tags": ["Auth"],
+        "summary": "Get info about current user from request.body",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/currentUserResponce"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "api/auth/updateUser": {
+      "patch": {
+        "tags": ["Auth"],
+        "summary": "update user`s info",
+        "description": "Бере айді юзера з прошарку авторизації",
+        "requestBody": {
+          "description": "Registration`s object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/updateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/updateUserResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User with this ID not found"
           }
         }
       }
@@ -357,6 +408,120 @@
             "type": "string",
             "description": "user`s id",
             "example": "тут буде ID юзера"
+          }
+        }
+      },
+      "currentUserResponce": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user`s name",
+            "example": "Stepan Giga"
+          },
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "city": {
+            "type": "string",
+            "description": "users`s city",
+            "example": "Dnipro, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "users`s phone",
+            "example": "+380991234567"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "user`s avatar URL",
+            "example": "посилання на аватар юзера"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "user`s birth date",
+            "example": "01.01.1909"
+          },
+          "favoriteList": {
+            "type": "array",
+            "description": "array of favorite notices",
+            "items": {
+              "type": "string",
+              "description": "id of favorite notice"
+            }
+          }
+        }
+      },
+      "updateUserRequest": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user`s name",
+            "example": "Stepan Giga"
+          },
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "city": {
+            "type": "string",
+            "description": "users`s city",
+            "example": "Dnipro, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "users`s phone",
+            "example": "+380991234567"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "user`s avatar URL",
+            "example": "посилання на аватар юзера"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "user`s birth date",
+            "example": "01.01.1909"
+          }
+        }
+      },
+      "updateUserResponse": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "user`s name",
+            "example": "Stepan Giga"
+          },
+          "email": {
+            "type": "string",
+            "description": "user`s email",
+            "example": "gigaforever@giga.net.ua"
+          },
+          "city": {
+            "type": "string",
+            "description": "users`s city",
+            "example": "Dnipro, Ukraine"
+          },
+          "phone": {
+            "type": "string",
+            "description": "users`s phone",
+            "example": "+380991234567"
+          },
+          "avatarURL": {
+            "type": "string",
+            "description": "user`s avatar URL",
+            "example": "посилання на аватар юзера"
+          },
+          "birthData": {
+            "type": "string",
+            "description": "user`s birth date",
+            "example": "01.01.1909"
           }
         }
       }
