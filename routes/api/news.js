@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { controllerWrapper } = require("../../helpers/apiHelpers");
-const { getAllNews, getNewsBySearch } = require("../../models/news");
+const { getAllNews, getNewsBySearch } = require("../../controllers/news");
 
 router.get("/", controllerWrapper(getAllNews));
 
