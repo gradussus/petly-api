@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const { controllerWrapper } = require("../../helpers/apiHelpers");
-const { isValidId, authenticate } = require("../../middlewares");
+const { isValidId, authenticate, validation } = require("../../middlewares");
 const {
   addNotice,
   getAllNotices,
@@ -15,8 +15,14 @@ const {
   removeFromFavoriteList,
   getFavoriteList,
 } = require("../../models/notices");
+const { joiNoticeAddSchema } = require("../../schemas/validationJoi");
 
-router.post("/create", authenticate, controllerWrapper(addNotice));
+router.post(
+  "/create",
+  validation(joiNoticeAddSchema),
+  authenticate,
+  controllerWrapper(addNotice)
+);
 router.get("/", controllerWrapper(getAllNotices));
 router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
