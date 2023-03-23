@@ -3,12 +3,11 @@ const { User } = require("../../schemas/userModel");
 const updateUser = async (req, res) => {
   const { id } = req.user;
 
-  const { name, email, city, avatarURL, phone, birthDate, favoriteList } =
-    req.body;
+  const { name, email, city, avatarURL, phone, birthDate } = req.body;
 
   const user = await User.findByIdAndUpdate(
     id,
-    { name, email, city, avatarURL, phone, birthDate, favoriteList },
+    { name, email, city, avatarURL, phone, birthDate },
     { new: true }
   );
   if (!user) {
