@@ -9,8 +9,7 @@ const addToFavoriteList = async (req, res) => {
   const isAdded = user.favoriteList.includes(id);
 
   if (isAdded) {
-    return res.json({
-      code: 409,
+    return res.status(409).json({
       message: "Notice is already favorite.",
     });
   }
