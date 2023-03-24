@@ -4,7 +4,7 @@ const getNoticeById = async (req, res) => {
   const notice = await Notice.findById(id).populate("owner", "email phone");
 
   if (!notice) {
-    res.json({
+    res.status(404).json({
       message: "Not found",
     });
   }
