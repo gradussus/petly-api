@@ -1,4 +1,5 @@
 const { User } = require("../../schemas/userModel");
+const { Notice } = require("../../schemas/noticeModel");
 
 const addToFavoriteList = async (req, res) => {
   const { _id } = req.user;
@@ -23,7 +24,13 @@ const addToFavoriteList = async (req, res) => {
 
   await user.save();
 
-  res.json({ message: "Notice is added to favorites" });
+  const { favoriteList } = await User.findById({ _id });
+
+  const notices = await Notice.find({ _id: { $in: favoriteList } }).sort({
+    _id: -1,
+  });
+  //res.json({ message: "Notice is added to favorites" });
+  res.status(200).json(notices);
 };
 
 module.exports = addToFavoriteList;
