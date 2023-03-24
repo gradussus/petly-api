@@ -14,7 +14,7 @@ const {
   addToFavoriteList,
   removeFromFavoriteList,
   getFavoriteList,
-} = require("../../models/notices");
+} = require("../../controllers/notices");
 const { joiNoticeAddSchema } = require("../../schemas/validationJoi");
 
 router.post(
