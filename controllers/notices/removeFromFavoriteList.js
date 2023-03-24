@@ -9,8 +9,7 @@ const removeFromFavoriteList = async (req, res) => {
   const isFavorite = user.favoriteList.includes(id);
 
   if (!isFavorite) {
-    return res.json({
-      code: 409,
+    return res.status(409).json({
       message: "Notice isn`t favorite.",
     });
   }
