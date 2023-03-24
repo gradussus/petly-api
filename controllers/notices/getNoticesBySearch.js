@@ -10,11 +10,11 @@ const getNoticesBySearch = async (req, res) => {
     createdAt: -1,
   });
 
-  if (notices.length === 0) {
-    res.json({
-      message: "Not found",
-    });
-  }
+  // if (notices.length === 0) {
+  //   res.json({
+  //     message: "Not found",
+  //   });
+  // }
 
   res.status(200).json(notices);
 };
