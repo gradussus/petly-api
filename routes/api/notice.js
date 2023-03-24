@@ -29,14 +29,14 @@ router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 router.post(
   "/add_favorite/:id",
   authenticate,
-  isValidId("id"),
+  isValidId,
   controllerWrapper(addToFavoriteList)
 );
 
 router.post(
   "/remove_favorite/:id",
   authenticate,
-  isValidId("id"),
+  isValidId,
   controllerWrapper(removeFromFavoriteList)
 );
 
@@ -55,18 +55,17 @@ router.get(
   controllerWrapper(getNoticesBySearch)
 );
 
+
 //router.get("/search/:qwery", controllerWrapper(getNoticesBySearch));
 
-router.get(
-  "/find_notice/:id",
-  isValidId("id"),
-  controllerWrapper(getNoticeById)
-);
+
+router.get("/find_notice/:id", isValidId, controllerWrapper(getNoticeById));
+
 
 router.delete(
   "/delete/:id",
   authenticate,
-  isValidId("id"),
+  isValidId,
   controllerWrapper(deletePersonalNotice)
 );
 
