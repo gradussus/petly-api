@@ -34,6 +34,11 @@ const userSchema = Schema(
       ref: "notice",
       default: [],
     },
+    notices: {
+      type: Array,
+      ref: "notice",
+      default: [],
+    },
     token: {
       type: String,
       default: null,
