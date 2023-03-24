@@ -1,4 +1,5 @@
 const { User } = require("../../schemas/userModel");
+const { Notice } = require("../../schemas/noticeModel");
 
 const removeFromFavoriteList = async (req, res) => {
   const { _id } = req.user;
@@ -9,8 +10,7 @@ const removeFromFavoriteList = async (req, res) => {
   const isFavorite = user.favoriteList.includes(id);
 
   if (!isFavorite) {
-    return res.json({
-      code: 409,
+    return res.status(409).json({
       message: "Notice isn`t favorite.",
     });
   }
@@ -24,7 +24,13 @@ const removeFromFavoriteList = async (req, res) => {
 
   await user.save();
 
-  res.json({ message: "Notice is removed from favoriteList" });
+  //res.json({ message: "Notice is removed from favoriteList" });
+  const { favoriteList } = await User.findById({ _id });
+
+  const notices = await Notice.find({ _id: { $in: favoriteList } }).sort({
+    _id: -1,
+  });
+  res.status(200).json(notices);
 };
 
 module.exports = removeFromFavoriteList;
