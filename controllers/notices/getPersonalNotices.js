@@ -9,11 +9,11 @@ const getPersonalNotices = async (req, res) => {
     createdAt: -1,
   });
 
-  if (notices.length === 0) {
-    res.json({
-      message: "Not found",
-    });
-  }
+  // if (notices.length === 0) {
+  //   res.json({
+  //     message: "Not found",
+  //   });
+  // }
 
   res.json(notices);
 };
