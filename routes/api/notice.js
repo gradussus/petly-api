@@ -50,12 +50,12 @@ router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 //  controllerWrapper(getNoticesByCategory)
 //);
 
-// router.get(
-//   "/search/:categoryName/:qwery",
-//   controllerWrapper(getNoticesBySearch)
-// );
+router.get(
+  "/search/:categoryName/:qwery",
+  controllerWrapper(getNoticesBySearch)
+);
 
-router.get("/search/:qwery", controllerWrapper(getNoticesBySearch));
+//router.get("/search/:qwery", controllerWrapper(getNoticesBySearch));
 
 router.get(
   "/find_notice/:id",
