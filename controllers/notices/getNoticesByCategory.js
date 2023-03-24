@@ -16,11 +16,11 @@ const getNoticesByCategory = async (req, res) => {
     createdAt: -1,
   });
 
-  if (notices.length === 0) {
-    res.json({
-      message: "Not found",
-    });
-  }
+  // if (notices.length === 0) {
+  //   res.status(404).json({
+  //     message: "Not found",
+  //   });
+  // }
 
   //const total = await Notice.find({ category }).count();
 
