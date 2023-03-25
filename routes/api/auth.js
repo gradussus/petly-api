@@ -7,7 +7,7 @@ const {
   joiLoginSchema,
   joiUpdatedUserSchema,
 } = require("../../schemas/validationJoi");
-const { validation, authenticate } = require("../../middlewares");
+const { validation, authenticate, upload } = require("../../middlewares");
 
 const router = express.Router();
 
@@ -36,6 +36,13 @@ router.get(
   "/currentUser",
   authenticate,
   controllerWrapper(controller.currentUser)
+);
+
+router.patch(
+  "/avatars",
+  authenticate,
+  upload.single("avatar"),
+  controllerWrapper(controller.updateAvatar)
 );
 
 module.exports = router;
