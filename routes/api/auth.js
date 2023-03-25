@@ -8,6 +8,7 @@ const {
   joiUpdatedUserSchema,
 } = require("../../schemas/validationJoi");
 const { validation, authenticate } = require("../../middlewares");
+
 const router = express.Router();
 
 router.post(
