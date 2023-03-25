@@ -13,7 +13,7 @@ const register = async (req, res, next) => {
 
   const hashPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 
-  await User.create({
+  const newUser = await User.create({
     name,
     email,
     password: hashPassword,
@@ -23,11 +23,11 @@ const register = async (req, res, next) => {
   });
 
   const payload = {
-    id: User._id,
+    id: newUser._id,
   };
-
+  console.log(payload);
   const token = jwt.sign(payload, JWT_SECRET);
-  await User.findByIdAndUpdate(User._id, { token });
+  await User.findByIdAndUpdate(newUser._id, { token });
 
   res.status(201).json({
     name,
