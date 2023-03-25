@@ -6,7 +6,7 @@ const addNotice = async (req, res) => {
 
   const newNotice = await Notice.create({
     ...body,
-    photoURL: req?.file?.path,
+    imageURL: req?.file?.path,
 
     owner: _id,
   });
