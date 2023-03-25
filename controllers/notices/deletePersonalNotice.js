@@ -11,6 +11,7 @@ const deletePersonalNotice = async (req, res) => {
     return;
   }
 
-  res.status(200).json({ message: "notice deleted" });
+  //res.status(200).json({ message: "notice deleted" });
+  res.status(200).json(result);
 };
 module.exports = deletePersonalNotice;
