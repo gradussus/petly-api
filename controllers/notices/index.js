@@ -1,6 +1,6 @@
 const getAllNotices = require("./getAllNotices");
 
-const addNotice = require("./addNotice");
+const addNotice = require("./addNoticeCloudinary");
 
 const getNoticesByCategory = require("./getNoticesByCategory");
 
