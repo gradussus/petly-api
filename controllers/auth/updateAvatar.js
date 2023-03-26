@@ -17,7 +17,6 @@ const updateAvatar = async (req, res, next) => {
   // await User.findByIdAndUpdate(req.user._id, { avatarURL });
   // res.json({ avatarURL });
   // const locaFilePathtoAvatar = req.user.avatarURL;
-
   const locaFilePath = req.file.path;
   const avatarURL = await uploadImage(locaFilePath);
   await User.findByIdAndUpdate(req.user._id, { avatarURL });
