@@ -3,7 +3,7 @@ const { User } = require("../../schemas/userModel");
 
 // const path = require("path");
 // const fs = require("fs/promises");
-const { uploadImage } = require("../../middlewares/cloudyupdate");
+const { uploadImage } = require("../../middlewares");
 
 const updateAvatar = async (req, res, next) => {
   // const { path: tempUpload, originalname } = req.file;
@@ -16,9 +16,7 @@ const updateAvatar = async (req, res, next) => {
   // const avatarURL = await uploadImage(resultUpload);
   // await User.findByIdAndUpdate(req.user._id, { avatarURL });
   // res.json({ avatarURL });
-
   // const locaFilePathtoAvatar = req.user.avatarURL;
-
   const locaFilePath = req.file.path;
   const avatarURL = await uploadImage(locaFilePath);
   await User.findByIdAndUpdate(req.user._id, { avatarURL });
