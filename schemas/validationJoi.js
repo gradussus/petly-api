@@ -1,7 +1,6 @@
 const Joi = require("joi");
 const nameRegexp = /^[a-zA-Zа-яА-ЯіІїЇґҐ]+(?: [a-zA-Zа-яА-ЯіІїЇґҐ]+)*$/;
-const emailRegexp =
-  /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+const emailRegexp = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 const passwordRegexp = /^[a-zA-Z0-9а-яА-Я]+$/;
 const phoneRegexp = /^\+380\d{9}$/;
 const cityRegexp = /^[а-яёіїєА-ЯЁІЇЄA-Za-z]+,?\s[а-яёіїєА-ЯЁІЇЄA-Za-z]+$/;
