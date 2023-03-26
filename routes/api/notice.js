@@ -21,13 +21,7 @@ const {
   getFavoriteList,
 } = require("../../controllers/notices");
 const { joiNoticeAddSchema } = require("../../schemas/validationJoi");
-
-// router.post(
-//   "/create",
-//   authenticate,
-//   validation(joiNoticeAddSchema),
-//   controllerWrapper(addNotice)
-// );
+const changeImg = require("../../controllers/notices/changeImg");
 
 router.post(
   "/create",
@@ -36,7 +30,6 @@ router.post(
   validation(joiNoticeAddSchema),
   controllerWrapper(addNotice)
 );
-
 router.get("/", controllerWrapper(getAllNotices));
 router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
@@ -78,6 +71,13 @@ router.delete(
   authenticate,
   isValidId,
   controllerWrapper(deletePersonalNotice)
+);
+
+router.patch(
+  "/find_notice/:id",
+  isValidId,
+  uploadCloud.single("image"),
+  controllerWrapper(changeImg)
 );
 
 module.exports = router;
