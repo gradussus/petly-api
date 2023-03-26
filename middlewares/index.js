@@ -4,5 +4,6 @@ const authenticate = require("./authenticate");
 
 const isValidId = require("./isValidId");
 
-module.exports = { validation, isValidId, authenticate };
+const uploadCloud = require("./cloudinaryUploadMiddleware");
 
+module.exports = { validation, isValidId, authenticate, uploadCloud };

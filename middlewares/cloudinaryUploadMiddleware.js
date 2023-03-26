@@ -8,13 +8,13 @@ dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
-  folder: "avatars",
+  folder: "notice",
   allowedFormats: ["jpg", "png"],
   filename: (req, file, cb) => {
     cb(null, file.originalname);

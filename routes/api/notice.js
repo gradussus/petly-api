@@ -2,7 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const { controllerWrapper } = require("../../helpers/apiHelpers");
-const { isValidId, authenticate, validation } = require("../../middlewares");
+const {
+  isValidId,
+  authenticate,
+  validation,
+  uploadCloud,
+} = require("../../middlewares");
 const {
   addNotice,
   getAllNotices,
@@ -17,12 +22,21 @@ const {
 } = require("../../controllers/notices");
 const { joiNoticeAddSchema } = require("../../schemas/validationJoi");
 
+// router.post(
+//   "/create",
+//   authenticate,
+//   validation(joiNoticeAddSchema),
+//   controllerWrapper(addNotice)
+// );
+
 router.post(
   "/create",
-  validation(joiNoticeAddSchema),
   authenticate,
+  uploadCloud.single("image"),
+  validation(joiNoticeAddSchema),
   controllerWrapper(addNotice)
 );
+
 router.get("/", controllerWrapper(getAllNotices));
 router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
@@ -55,12 +69,9 @@ router.get(
   controllerWrapper(getNoticesBySearch)
 );
 
-
 //router.get("/search/:qwery", controllerWrapper(getNoticesBySearch));
 
-
 router.get("/find_notice/:id", isValidId, controllerWrapper(getNoticeById));
-
 
 router.delete(
   "/delete/:id",
