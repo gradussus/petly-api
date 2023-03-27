@@ -9,9 +9,11 @@
   "produces": ["application.json"],
   "servers": [{ "url": "https://petly-vxdt.onrender.com " }],
   "tags": [
+    { "name": "Auth", "description": "Login, registration, logout, etc" },
     { "name": "News", "description": "News enpoint" },
+    { "name": "Notices", "description": "Notices enpoint" },
     { "name": "Our friends", "description": "Our friends enpoint" },
-    { "name": "Auth", "description": "Login, registration, logout, etc" }
+    { "name": "Pets", "description": "Pets enpoint" }
   ],
 
   "paths": {
@@ -230,6 +232,86 @@
           },
           "404": {
             "description": "User with this ID not found"
+          }
+        }
+      }
+    },
+    "api/pets/create": {
+      "post": {
+        "tags": ["Pets"],
+        "summary": "Add pet",
+        "description": "Owner приходить з прошарку авторизації",
+        "requestBody": {
+          "description": "Pet`s object",
+          "required": true,
+          "content": {
+            "application.json": {
+              "schema": {
+                "$ref": "#/components/schemas/createPetRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/createPetResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "api/pets/{id}": {
+      "delete": {
+        "tags": ["Pets"],
+        "summary": "Delete pet",
+        "description": "Повертає об'єкт видаленного петсу",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string",
+            "description": "pet`s ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/deletePetResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "There is no such pet in the list"
+          }
+        }
+      }
+    },
+    "api/pets/allUserPets": {
+      "get": {
+        "tags": ["Pets"],
+        "summary": "Get all user`s pets",
+        "description": "ID користувача бере з мідлвару",
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application.json": {
+                "schema": {
+                  "$ref": "#/components/schemas/allUserPetsResponse"
+                }
+              }
+            }
           }
         }
       }
@@ -523,6 +605,117 @@
             "description": "user`s birth date",
             "example": "01.01.1909"
           }
+        }
+      },
+      "createPetRequest": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "petName": {
+            "type": "string",
+            "description": "pet`s name",
+            "example": "Tuzik"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "pet`s BD",
+            "example": "20.02.2014"
+          },
+          "breed": {
+            "type": "string",
+            "description": "pet`s breed",
+            "example": "dvornyaga"
+          },
+          "imageURL": {
+            "type": "string",
+            "description": "pet`s photo",
+            "example": "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "comments adout pet",
+            "example": "Найкращий варіант для шаурми!"
+          }
+        }
+      },
+      "createPetResponse": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "petName": {
+            "type": "string",
+            "description": "pet`s name",
+            "example": "Tuzik"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "pet`s BD",
+            "example": "20.02.2014"
+          },
+          "breed": {
+            "type": "string",
+            "description": "pet`s breed",
+            "example": "dvornyaga"
+          },
+          "imageURL": {
+            "type": "string",
+            "description": "pet`s photo",
+            "example": "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "comments adout pet",
+            "example": "Найкращий варіант для шаурми!"
+          },
+          "owner": {
+            "type": "string",
+            "description": "owner`s id",
+            "example": "тут буде ID юзера що створив цього петса"
+          }
+        }
+      },
+      "deletePetResponse": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "petName": {
+            "type": "string",
+            "description": "pet`s name",
+            "example": "Tuzik"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "pet`s BD",
+            "example": "20.02.2014"
+          },
+          "breed": {
+            "type": "string",
+            "description": "pet`s breed",
+            "example": "dvornyaga"
+          },
+          "imageURL": {
+            "type": "string",
+            "description": "pet`s photo",
+            "example": "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "comments adout pet",
+            "example": "Найкращий варіант для шаурми!"
+          },
+          "owner": {
+            "type": "string",
+            "description": "owner`s id",
+            "example": "тут буде ID юзера що створив цього петса"
+          }
+        }
+      },
+      "allUserPetsResponse": {
+        "type": "array",
+        "description": "array of all user`s pets",
+        "items": {
+          "type": "string",
+          "description": "id of user`s pets"
         }
       }
     }
