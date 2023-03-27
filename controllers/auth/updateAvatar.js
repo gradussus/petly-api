@@ -1,12 +1,10 @@
-// const Jimp = require("jimp");
 const { User } = require("../../schemas/userModel");
+
 
 const updateAvatar = async (req, res) => {
   const { _id } = req.user;
-  console.log(req.file.path);
   const avatarURL = req.file.path;
-  console.log(avatarURL);
-
+  
   const result = await User.findByIdAndUpdate(_id, { avatarURL: avatarURL });
 
   res.status(200).json(avatarURL);

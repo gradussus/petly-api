@@ -13,8 +13,10 @@ const {
   upload,
   uploadCloud,
 } = require("../../middlewares");
+
 const changeAva = require("../../controllers/auth/updAvatarNatali");
 const { updateAvatar } = require("../../controllers/auth");
+
 
 const router = express.Router();
 
