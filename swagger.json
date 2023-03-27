@@ -584,12 +584,46 @@
           "comments": {
             "type": "string",
             "description": "comments adout pet",
-
             "example": "Найкращий варіант для шаурми!"
           }
         }
       },
-      "createPetResponse": {}
+      "createPetResponse": {
+        "type": "object",
+        "required": true,
+        "properties": {
+          "petName": {
+            "type": "string",
+            "description": "pet`s name",
+            "example": "Tuzik"
+          },
+          "birthDate": {
+            "type": "string",
+            "description": "pet`s BD",
+            "example": "20.02.2014"
+          },
+          "breed": {
+            "type": "string",
+            "description": "pet`s breed",
+            "example": "dvornyaga"
+          },
+          "imageURL": {
+            "type": "string",
+            "description": "pet`s photo",
+            "example": "https://aussiedlerbote.de/wp-content/uploads/2022/04/mongrel.jpg"
+          },
+          "comments": {
+            "type": "string",
+            "description": "comments adout pet",
+            "example": "Найкращий варіант для шаурми!"
+          },
+          "owner": {
+            "type": "string",
+            "description": "owner`s id",
+            "example": "тут буде ID юзера що створив цього петса"
+          }
+        }
+      }
     }
   }
 }
