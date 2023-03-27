@@ -10,13 +10,9 @@ const {
 const {
   validation,
   authenticate,
-  upload,
+  //upload,
   uploadCloud,
 } = require("../../middlewares");
-
-const changeAva = require("../../controllers/auth/updAvatarNatali");
-const { updateAvatar } = require("../../controllers/auth");
-
 
 const router = express.Router();
 
@@ -51,7 +47,7 @@ router.patch(
   "/avatars",
   authenticate,
   uploadCloud.single("image"),
-  controllerWrapper(updateAvatar)
+  controllerWrapper(controller.updateAvatar)
 );
 
 // router.patch(
