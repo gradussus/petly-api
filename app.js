@@ -5,6 +5,8 @@ const cors = require("cors");
 require("dotenv").config();
 
 const authRouter = require("./routes/api/auth");
+// const googleAuth = require("./routes/api/googleAuth");
+const google = require("./routes/api/googleAuth");
 const newsRouter = require("./routes/api/news");
 const friendsRouter = require("./routes/api/friends");
 const noticeRouter = require("./routes/api/notice");
@@ -27,6 +29,8 @@ app.use(express.static("public"));
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
+app.use("/google", google);
+// app.use("/google-redirect", googleRedirect);
 app.use("/api/auth", authRouter);
 app.use("/news", newsRouter);
 app.use("/friends", friendsRouter);
