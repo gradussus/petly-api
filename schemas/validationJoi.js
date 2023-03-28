@@ -13,7 +13,7 @@ const joiNoticeAddSchema = Joi.object({
   category: Joi.string().valid("sell", "lost-found", "for-free").required(),
   title: Joi.string().min(2).max(48).required(),
   name: Joi.string().pattern(nameRegexp).min(2).max(16),
-  birthDate: Joi.string().pattern(birthDate),
+  birthDate: Joi.string().pattern(birthDate).required(),
   breed: Joi.string().pattern(breedRegexp).min(2).max(24),
   sex: Joi.string().valid("male", "female").required(),
   location: Joi.string().pattern(cityRegexp).required(),
