@@ -17,14 +17,8 @@ const removeFromFavoriteList = async (req, res) => {
 
   user.favoriteList.pull(id);
 
-  // const user = await User.updateOne(
-  //   { _id },
-  //   { $pull: { favorites: noticeId } }
-  // );
-
   await user.save();
 
-  //res.json({ message: "Notice is removed from favoriteList" });
   const { favoriteList } = await User.findById({ _id });
 
   const notices = await Notice.find({ _id: { $in: favoriteList } }).sort({
