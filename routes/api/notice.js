@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const { controllerWrapper } = require("../../helpers/apiHelpers");
 const {
   isValidId,
@@ -30,7 +29,9 @@ router.post(
   validation(joiNoticeAddSchema),
   controllerWrapper(addNotice)
 );
+
 router.get("/", controllerWrapper(getAllNotices));
+
 router.get("/own", authenticate, controllerWrapper(getPersonalNotices));
 
 router.post(
@@ -51,18 +52,10 @@ router.get("/favorite", authenticate, controllerWrapper(getFavoriteList));
 
 router.get("/:categoryName", controllerWrapper(getNoticesByCategory));
 
-//router.get(
-//  "/category/:category",
-//  isValidCategory,
-//  controllerWrapper(getNoticesByCategory)
-//);
-
 router.get(
   "/search/:categoryName/:qwery",
   controllerWrapper(getNoticesBySearch)
 );
-
-//router.get("/search/:qwery", controllerWrapper(getNoticesBySearch));
 
 router.get("/find_notice/:id", isValidId, controllerWrapper(getNoticeById));
 

@@ -1,4 +1,5 @@
 const { Notice } = require("../../schemas/noticeModel");
+
 const getNoticeById = async (req, res) => {
   const { id } = req.params;
   const notice = await Notice.findById(id).populate("owner", "email phone");

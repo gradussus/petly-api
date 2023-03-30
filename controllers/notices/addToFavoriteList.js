@@ -17,11 +17,6 @@ const addToFavoriteList = async (req, res) => {
 
   user.favoriteList.push(id);
 
-  //     const user = await User.updateOne(
-  //     { _id },
-  //     { $addToSet: { favorites: id } }
-  //   );
-
   await user.save();
 
   const { favoriteList } = await User.findById({ _id });
@@ -29,7 +24,7 @@ const addToFavoriteList = async (req, res) => {
   const notices = await Notice.find({ _id: { $in: favoriteList } }).sort({
     _id: -1,
   });
-  //res.json({ message: "Notice is added to favorites" });
+
   res.status(200).json(notices);
 };
 

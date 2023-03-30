@@ -47,13 +47,11 @@ const noticeSchema = new Schema(
       ],
       required: [true, "Breed is required"],
     },
-
     sex: {
       type: String,
       enum: ["male", "female"],
       required: [true, "Sex is required"],
     },
-
     location: {
       type: String,
       required: [true, "Location is required"],
@@ -88,6 +86,9 @@ const noticeSchema = new Schema(
     versionKey: false,
   }
 );
+
 noticeSchema.post("save", handleMongooseError);
+
 const Notice = model("notice", noticeSchema);
+
 module.exports = { Notice };
