@@ -52,10 +52,14 @@ const joiPetSchema = Joi.object({
   comments: Joi.string().min(8).max(120),
 });
 
+const joiRefreshSchema = Joi.object({
+  refreshToken: Joi.string().required(),
+});
 module.exports = {
   joiUserSchema,
   joiLoginSchema,
   joiUpdatedUserSchema,
   joiPetSchema,
   joiNoticeAddSchema,
+  joiRefreshSchema,
 };
