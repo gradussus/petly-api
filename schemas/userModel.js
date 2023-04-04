@@ -39,7 +39,10 @@ const userSchema = Schema(
       ref: "notice",
       default: [],
     },
-    token: {
+    accessToken: {
+      type: String,
+    },
+    refreshToken: {
       type: String,
     },
   },
