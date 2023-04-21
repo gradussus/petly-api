@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 const { User } = require("../../schemas/userModel");
 
-const { JWT_SECRET, REFRESH_SECRET_KEY } = process.env;
+const { JWT_SECRET } = process.env;
 
 const login = async (req, res) => {
   const { email, password } = req.body;
@@ -27,15 +27,11 @@ const login = async (req, res) => {
     id: user._id,
   };
 
-  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "10m" });
-  const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
-    expiresIn: "10d",
-  });
-  await User.findByIdAndUpdate(user._id, { accessToken, refreshToken });
+  const token = jwt.sign(payload, JWT_SECRET);
+  await User.findByIdAndUpdate(user._id, { token });
 
   return res.status(200).json({
-    accessToken,
-    refreshToken,
+    token,
   });
 };
 

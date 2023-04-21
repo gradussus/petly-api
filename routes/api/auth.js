@@ -6,7 +6,6 @@ const {
   joiUserSchema,
   joiLoginSchema,
   joiUpdatedUserSchema,
-  joiRefreshSchema,
 } = require("../../schemas/validationJoi");
 const { validation, authenticate, uploadCloud } = require("../../middlewares");
 
@@ -44,12 +43,6 @@ router.patch(
   authenticate,
   uploadCloud.single("image"),
   controllerWrapper(controller.updateAvatar)
-);
-
-router.post(
-  "/refresh",
-  validation(joiRefreshSchema),
-  controllerWrapper(controller.refreshToken)
 );
 
 module.exports = router;

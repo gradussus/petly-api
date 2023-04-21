@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { JWT_SECRET, REFRESH_SECRET_KEY } = process.env;
+const { JWT_SECRET } = process.env;
 const { User } = require("../../schemas/userModel");
 const gravatar = require("gravatar");
 
@@ -26,11 +26,8 @@ const register = async (req, res, next) => {
     id: newUser._id,
   };
   console.log(payload);
-  const accessToken = jwt.sign(payload, JWT_SECRET, { expiresIn: "10m" });
-  const refreshToken = jwt.sign(payload, REFRESH_SECRET_KEY, {
-    expiresIn: "10d",
-  });
-  await User.findByIdAndUpdate(newUser._id, { accessToken, refreshToken });
+  const token = jwt.sign(payload, JWT_SECRET);
+  await User.findByIdAndUpdate(newUser._id, { token });
 
   res.status(201).json({
     name,
@@ -38,8 +35,7 @@ const register = async (req, res, next) => {
     avatarURL: gravatar.url(email),
     city,
     phone,
-    accessToken,
-    refreshToken,
+    token,
   });
 };
 
